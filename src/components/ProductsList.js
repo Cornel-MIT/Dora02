@@ -43,55 +43,57 @@ const ProductsList = () => {
   };
 
   const handleAddToCart = (product) => {
-  
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
     const existingProduct = cart.find(item => item._id === product._id);
-    if (existingProduct) {
 
+    if (existingProduct) {
       existingProduct.quantity += 1;
     } else {
-
       cart.push({ ...product, quantity: 1 });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-
     navigate('/cart');
   };
 
   return (
-    <div>
-      <h2>Product List</h2>
-      <div className="product-list-container">
+    <div className="product-list-page">
+      <h2 className="page-title">Product List</h2>
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search products..."
           value={searchQuery}
           onChange={handleSearchChange}
-          style={{ padding: '8px', marginBottom: '20px', width: '300px' }}
+          className="search-input"
         />
       </div>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       <div className="product-list">
         {filteredProducts.length === 0 ? (
-          <p>No products found</p>
+          <p className="no-products-message">No products found</p>
         ) : (
           filteredProducts.map((product) => (
             <div key={product._id} className="product-card">
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                style={{ width: '200px', height: '200px' }}
+                className="product-image"
               />
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <p>${product.price}</p>
-              <div className="product-buttons">
-                <button onClick={() => handleBuyClick(product._id)}>Buy</button>
-                <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <div className="product-info">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+                <p className="product-price">${product.price}</p>
+                <div className="product-buttons">
+                  <button onClick={() => handleBuyClick(product._id)} className="buy-button">
+                    Buy
+                  </button>
+                  <button onClick={() => handleAddToCart(product)} className="add-to-cart-button">
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           ))
