@@ -3,21 +3,19 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ProductsList.css';
 
-
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]); 
-  const [searchQuery, setSearchQuery] = useState(''); 
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/products');
         setProducts(response.data);
-        setFilteredProducts(response.data); 
+        setFilteredProducts(response.data);
       } catch (err) {
         setError('Error fetching products');
       }
@@ -36,13 +34,30 @@ const ProductsList = () => {
       );
       setFilteredProducts(filtered);
     } else {
-      setFilteredProducts(products); 
+      setFilteredProducts(products);
     }
   };
 
-
   const handleBuyClick = (productId) => {
     navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCart = (product) => {
+  
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingProduct = cart.find(item => item._id === product._id);
+    if (existingProduct) {
+
+      existingProduct.quantity += 1;
+    } else {
+
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    navigate('/cart');
   };
 
   return (
@@ -74,7 +89,10 @@ const ProductsList = () => {
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <p>${product.price}</p>
-              <button onClick={() => handleBuyClick(product._id)}>Buy</button>
+              <div className="product-buttons">
+                <button onClick={() => handleBuyClick(product._id)}>Buy</button>
+                <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              </div>
             </div>
           ))
         )}
