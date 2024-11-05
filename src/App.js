@@ -4,6 +4,7 @@ import Header from './components/Header';
 import ProductsList from './components/ProductsList';
 import ProductDetail from './components/ProductDetail';
 import Register from './components/Register';
+import Payment from './components/Payment';
 import Login from './components/Login';
 import AddProduct from './components/AddProduct';
 
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<ProductsList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-product" element={<AddProduct />} />
