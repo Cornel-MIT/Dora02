@@ -35,7 +35,7 @@ const ProductDetail = () => {
           <h2>{product.name}</h2>
           <img src={product.imageUrl} alt={product.name} style={{ width: '300px', height: '300px' }} />
           <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
+          <p>Price: R{product.price}</p>
           <p>Category: {product.category}</p>
 
           <button onClick={handleProceedToPayment}>Proceed to Payment</button>

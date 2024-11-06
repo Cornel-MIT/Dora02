@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Cart.css';
+import '../components/styles/Cart.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -38,7 +38,7 @@ const Cart = () => {
               <div key={product._id} className="cart-item">
                 <img src={product.imageUrl} alt={product.name} style={{ width: '100px' }} />
                 <h4>{product.name}</h4>
-                <p>Price: ${product.price}</p>
+                <p>Price: R{product.price}</p>
                 <p>Quantity: {product.quantity}</p>
                 <button onClick={() => handleRemoveFromCart(product._id)}>Remove</button>
               </div>
@@ -46,7 +46,7 @@ const Cart = () => {
           </div>
           <div className="cart-summary">
             <p>Total Items: {totalItems}</p>
-            <p>Total Price: ${totalPrice.toFixed(2)}</p>
+            <p>Total Price: R{totalPrice.toFixed(2)}</p>
             <button onClick={handleProceedToPayment}>Proceed to Payment</button>
           </div>
         </>

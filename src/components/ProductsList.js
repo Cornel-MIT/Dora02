@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ProductsList.css';
+import '../components/styles/ProductsList.css';
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -85,7 +85,7 @@ const ProductsList = () => {
               <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-description">{product.description}</p>
-                <p className="product-price">${product.price}</p>
+                <p className="product-price">R{product.price}</p>
                 <div className="product-buttons">
                   <button onClick={() => handleBuyClick(product._id)} className="buy-button">
                     Buy
