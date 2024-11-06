@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa'; 
 import '../components/styles/ProductsList.css';
 
 const ProductsList = () => {
@@ -90,9 +91,10 @@ const ProductsList = () => {
                   <button onClick={() => handleBuyClick(product._id)} className="buy-button">
                     Buy
                   </button>
-                  <button onClick={() => handleAddToCart(product)} className="add-to-cart-button">
-                    Add to Cart
-                  </button>
+                  <FaShoppingCart
+                    onClick={() => handleAddToCart(product)}
+                    className="add-to-cart-icon"
+                  />
                 </div>
               </div>
             </div>
