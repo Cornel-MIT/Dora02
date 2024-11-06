@@ -7,7 +7,7 @@ import '../components/styles/Header.css';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(5);
+  const [cartCount, setCartCount] = useState(8);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
