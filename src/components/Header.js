@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FaShoppingCart } from 'react-icons/fa';  
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../components/media/Dora-Logo2.png';  
@@ -7,7 +8,7 @@ import '../components/styles/Header.css';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(8);
+  const cartCount = useSelector(state => state.cart.totalItems);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -35,6 +36,7 @@ const Header = () => {
           </Link>
           <Link to="/register" className="nav-link">Register</Link>
           <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/profile" className="nav-link">My Profile</Link>
         </div>
       </nav>
     </header>

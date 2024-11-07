@@ -1,0 +1,10 @@
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const SET_PURCHASE_HISTORY = 'SET_PURCHASE_HISTORY';
+
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const UPDATE_CART = 'UPDATE_CART';
+export const CLEAR_CART = 'CLEAR_CART';

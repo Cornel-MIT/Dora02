@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart, updateCart } from '../store/cartActions';
 import '../components/styles/Cart.css';
 
 const Cart = () => {
-  const [cart, setCart] = useState([]);
+  const cart = useSelector(state => state.cart.items);
+  const totalItems = useSelector(state => state.cart.totalItems);
+  const totalPrice = useSelector(state => state.cart.totalPrice);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-  }, []);
+    dispatch(updateCart(storedCart));
+  }, [dispatch]);
 
   const handleProceedToPayment = () => {
-    
     navigate('/payment');
   };
 
   const handleRemoveFromCart = (productId) => {
-
-    const updatedCart = cart.filter(item => item._id !== productId);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    dispatch(removeFromCart(productId));
   };
-
-  const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-  const totalPrice = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
 
   return (
     <div className="cart-container">
