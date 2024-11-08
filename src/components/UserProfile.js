@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../store/userActions';
+import './styles/UserProfile.css';
 
 const UserProfile = () => {
   const { profile, purchaseHistory } = useSelector(state => state.user);
@@ -82,7 +83,6 @@ const UserProfile = () => {
         </form>
       </div>
 
-      {/* Purchase History */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Purchase History</h2>
         {purchaseHistory.length > 0 ? (
